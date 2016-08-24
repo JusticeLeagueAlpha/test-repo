@@ -1,2 +1,15 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$true-black: #000;
+
+
+
+
+
+
+.inject-books {
+  display: inline-block;
+  color: $true-black;
+  text-align: center;
+}
