@@ -7,8 +7,12 @@
 require('./example');
 require('./books');
 
-const booksEvents = require('./auth/books.js');
+const booksEvents = require('./books.js');
+
+$(document).on('click', '#get-book-button', function(){
+  booksEvents.onGetBooks();
+});
 
 $(() => {
-  booksEvents.addHandlers();
+  // booksEvents.addHandlers();
 });

@@ -1,27 +1,42 @@
-'use strict'
+'use strict';
 
-const getFormFields = require(`../../../lib/get-form-fields`);
 const app = require('./app');
-const ui = require('./ui');
+
+const failure = (error) => {
+  console.error(error);
+};
+
+const getBooksSuccess = (data) => {
+  console.log(data);
+  const displayAllBooks =
+    require('./templates/display-all-books.handlebars');
+  $('.inject-books').html(displayAllBooks({
+    books: data.books
+  }));
+};
 
 const getBooks = function (){
   return $.ajax({
-    url: app.api + '/games/books',
+    url: app.api + '/books',
     method: 'GET',
   });
 };
 
-const onGetBooks = function onGetBooks(event) {
-  let data = getFormFields(this);
-  event.preventDefault();
-  getBooks(data)
-    .done(ui.getGameSuccess)
-    .fail(ui.failure);
+const onGetBooks = function() {
+  // event.preventDefault();
+  getBooks()
+    .done(getBooksSuccess)
+    .fail(failure);
 };
 
-const addHandlers = () => {
-};
+
+
+// const addHandlers = () => {
+//   $('#get-book-button').on('click', onGetBooks());
+// };
 
 module.exports = {
-  addHandlers,
+  // addHandlers,
+  onGetBooks,
+
 };
